@@ -2,6 +2,7 @@
 // VI: Root layout của App Router. Static — không touch request-time API.
 // EN: Root layout of the App Router. Static — does not touch request-time APIs.
 import type { ReactNode } from "react";
+import "./globals.css";
 
 export const metadata = {
   title: "PPR Demo",
@@ -11,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-screen bg-default-50 text-foreground antialiased">{children}</body>
     </html>
   );
 }

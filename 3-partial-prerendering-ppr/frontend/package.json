@@ -14,13 +14,18 @@
   "dependencies": {
     "next": "15.0.0-canary.200",
     "react": "19.0.0-rc-cd22717c-20241013",
-    "react-dom": "19.0.0-rc-cd22717c-20241013"
+    "react-dom": "19.0.0-rc-cd22717c-20241013",
+    "@heroui/react": "^3.0.0",
+    "framer-motion": "^11.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5"
   }
 }

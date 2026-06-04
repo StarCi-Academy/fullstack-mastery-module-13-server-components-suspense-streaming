@@ -1,12 +1,8 @@
 @import "tailwindcss";
+@import "@heroui/styles/css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@source "../../../node_modules/@heroui/react";
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: system-ui, -apple-system, sans-serif;
 }

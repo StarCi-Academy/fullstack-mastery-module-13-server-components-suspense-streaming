@@ -14,7 +14,9 @@ export default function RootLayout({
 }): React.ReactElement {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-screen bg-default-50 text-foreground antialiased">
+        {children}
+      </body>
     </html>
   );
 }

@@ -2,15 +2,22 @@
 // boundary with this component as fallback. (EN: Fallback cấp route hiển thị
 // trước khi shell /dashboard sẵn sàng — Next.js bọc page.tsx trong Suspense
 // ngầm với component này.)
+import { Card, CardContent, Spinner } from "@/components/ui";
+
 export default function DashboardLoading(): React.ReactElement {
   return (
-    <main className="flex min-h-screen items-center justify-center p-12">
-      <div
+    <main className="mx-auto flex min-h-screen max-w-6xl items-center justify-center p-6">
+      <Card
         data-testid="route-loading"
-        className="rounded-md bg-gray-100 px-6 py-4 text-lg font-medium text-gray-700"
+        className="border-default-200 border"
       >
-        Loading dashboard route...
-      </div>
+        <CardContent className="flex flex-row items-center gap-4 px-6 py-4">
+          <Spinner color="primary" size="md" />
+          <span className="text-default-700 text-lg font-medium">
+            Loading dashboard route...
+          </span>
+        </CardContent>
+      </Card>
     </main>
   );
 }

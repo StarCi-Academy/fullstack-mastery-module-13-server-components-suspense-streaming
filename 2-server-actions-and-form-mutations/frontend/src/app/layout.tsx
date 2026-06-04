@@ -15,7 +15,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>): React.ReactElement {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body className="min-h-screen bg-default-50 text-foreground antialiased">{children}</body>
     </html>
   );
 }

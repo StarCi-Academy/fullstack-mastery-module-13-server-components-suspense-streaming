@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
+import { Button } from "@/components/ui";
 import { createComment, type CreateCommentState } from "../actions";
 
 // VI: Component nút submit; dùng useFormStatus để disable + đổi label khi pending.
@@ -8,14 +9,17 @@ import { createComment, type CreateCommentState } from "../actions";
 function Submit(): React.ReactElement {
   const { pending } = useFormStatus();
   return (
-    <button
+    <Button
       type="submit"
-      disabled={pending}
+      isDisabled={pending}
       data-testid="submit-btn"
-      className="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-60"
+      color="primary"
+      variant="solid"
+      size="md"
+      className="font-medium"
     >
       {pending ? "Posting..." : "Post"}
-    </button>
+    </Button>
   );
 }
 
@@ -23,18 +27,25 @@ const initialState: CreateCommentState = { error: null };
 
 // VI: Form bình luận; useFormState wrap action để surface lỗi Zod ra React state.
 // (EN: Comment form; useFormState wraps the action to surface Zod errors as React state.)
+// VI: Dùng <textarea> HTML native để form vẫn submit khi tắt JS (progressive enhancement).
+// (EN: Use native <textarea> so the form still submits with JS disabled — progressive enhancement.)
 export function CommentForm(): React.ReactElement {
   const [state, action] = useFormState(createComment, initialState);
   return (
-    <form action={action} className="space-y-2" data-testid="comment-form">
+    <form action={action} className="space-y-3" data-testid="comment-form">
+      <label htmlFor="comment-body" className="text-default-700 block text-sm font-medium">
+        Nội dung comment
+      </label>
       <textarea
+        id="comment-body"
         name="body"
         data-testid="body-input"
-        className="w-full rounded border p-2"
         placeholder="Viết bình luận..."
+        rows={3}
+        className="border-default-300 bg-default-50 focus:border-primary focus:ring-primary block w-full rounded-medium border p-3 text-sm shadow-sm outline-none focus:ring-1"
       />
       {state.error && (
-        <p className="text-sm text-red-600" data-testid="error-msg">
+        <p className="text-danger-700 text-sm font-medium" data-testid="error-msg">
           {state.error}
         </p>
       )}

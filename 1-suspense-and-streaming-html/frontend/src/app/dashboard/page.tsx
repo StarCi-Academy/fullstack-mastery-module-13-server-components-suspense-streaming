@@ -3,20 +3,24 @@
 // boundary Suspense độc lập — mỗi widget stream ngay khi data resolve, widget
 // chậm KHÔNG chặn widget nhanh.)
 import { Suspense } from "react";
+import { Card, CardContent, Skeleton } from "@/components/ui";
 import { Quick } from "./_components/quick";
 import { Medium } from "./_components/medium";
 import { Slow } from "./_components/slow";
 
 export default function DashboardPage(): React.ReactElement {
   return (
-    <main className="grid gap-4 p-8 md:grid-cols-3" data-testid="dashboard-main">
-      <Suspense fallback={<Skeleton label="Quick" />}>
+    <main
+      className="mx-auto grid max-w-6xl gap-6 p-6 md:grid-cols-3"
+      data-testid="dashboard-main"
+    >
+      <Suspense fallback={<WidgetSkeleton label="quick" />}>
         <Quick />
       </Suspense>
-      <Suspense fallback={<Skeleton label="Medium" />}>
+      <Suspense fallback={<WidgetSkeleton label="medium" />}>
         <Medium />
       </Suspense>
-      <Suspense fallback={<Skeleton label="Slow" />}>
+      <Suspense fallback={<WidgetSkeleton label="slow" />}>
         <Slow />
       </Suspense>
     </main>
@@ -24,14 +28,18 @@ export default function DashboardPage(): React.ReactElement {
 }
 
 // Skeleton placeholder — reserves layout box to avoid CLS while widget pends.
-// (EN: Skeleton giữ chỗ layout, tránh cumulative layout shift khi widget chờ.)
-function Skeleton({ label }: { label: string }): React.ReactElement {
+// (EN: Skeleton HeroUI giữ chỗ layout, tránh cumulative layout shift khi widget chờ.)
+function WidgetSkeleton({ label }: { label: string }): React.ReactElement {
   return (
-    <div
-      data-testid={`skeleton-${label.toLowerCase()}`}
-      className="h-24 animate-pulse rounded bg-gray-100 p-4 text-gray-500"
+    <Card
+      data-testid={`skeleton-${label}`}
+      className="border-default-200 border"
     >
-      Loading {label}...
-    </div>
+      <CardContent className="space-y-3 p-4">
+        <Skeleton className="h-4 w-24 rounded-lg" />
+        <Skeleton className="h-8 w-full rounded-lg" />
+        <Skeleton className="h-3 w-32 rounded-lg" />
+      </CardContent>
+    </Card>
   );
 }

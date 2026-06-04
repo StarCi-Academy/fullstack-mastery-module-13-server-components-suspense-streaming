@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button, Chip } from "@/components/ui";
 
 interface AddToCartButtonProps {
   productId: string;
@@ -10,14 +11,27 @@ interface AddToCartButtonProps {
 export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.Element {
   const [count, setCount] = useState(0);
   return (
-    <button
-      data-testid="add-to-cart"
-      data-product-id={productId}
-      className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-      onClick={() => setCount((c) => c + 1)}
-      type="button"
-    >
-      Add to cart ({count})
-    </button>
+    <div className="flex items-center gap-3">
+      <Button
+        data-testid="add-to-cart"
+        data-product-id={productId}
+        color="primary"
+        variant="solid"
+        size="md"
+        type="button"
+        className="font-medium"
+        onPress={() => setCount((c) => c + 1)}
+      >
+        Add to cart ({count})
+      </Button>
+      <Chip
+        data-testid="cart-state"
+        color={count > 0 ? "success" : "default"}
+        variant="flat"
+        size="md"
+      >
+        {count > 0 ? "added" : "empty"}
+      </Chip>
+    </div>
   );
 }
