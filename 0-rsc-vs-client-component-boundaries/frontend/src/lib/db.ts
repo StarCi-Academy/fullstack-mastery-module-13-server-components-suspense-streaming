@@ -1,7 +1,7 @@
 import "server-only";
 
-// VI: Helper truy vấn database — mô phỏng (EN: Database query helper — mocked for the FE-only lab).
-// Trong lesson thật ta sẽ dùng `pg`; ở đây mock để giữ FE-only chạy được mà không cần Postgres.
+// EN: Database query helper — mocked for the FE-only lab.
+// A real lesson would use `pg`; here it is mocked so the FE-only lab runs without Postgres.
 
 interface Product {
   id: string;
@@ -20,12 +20,12 @@ interface QueryResult<T> {
 
 export const db = {
   /**
-   * VI: Mô phỏng db.query trả về sản phẩm theo id (EN: Simulate db.query returning a product by id).
+   * EN: Simulate db.query returning a product by id.
    */
   async query<T = Product>(_sql: string, params: unknown[]): Promise<QueryResult<T>> {
     const id = String(params[0]);
     const product = MOCK_PRODUCTS[id];
-    // VI: Giả lập latency nhỏ để cho thấy nó là async server work (EN: tiny latency to simulate async server work).
+    // EN: tiny latency to simulate async server work.
     await new Promise((resolve) => setTimeout(resolve, 30));
     return { rows: product ? [product as unknown as T] : [] };
   },

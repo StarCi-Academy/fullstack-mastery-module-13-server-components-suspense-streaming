@@ -15,7 +15,7 @@ export default function Home(): React.ReactElement {
         </CardHeader>
         <CardContent>
           <Link href="/products/1" className="inline-block" data-testid="link-product">
-            <Button color="primary" size="lg" variant="solid" type="button" className="font-medium">
+            <Button variant="primary" size="lg" type="button" className="font-medium">
               Mở /products/1
             </Button>
           </Link>

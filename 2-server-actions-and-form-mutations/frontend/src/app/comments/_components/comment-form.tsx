@@ -4,8 +4,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { Button } from "@/components/ui";
 import { createComment, type CreateCommentState } from "../actions";
 
-// VI: Component nút submit; dùng useFormStatus để disable + đổi label khi pending.
-// (EN: Submit button component; uses useFormStatus to disable + change label when pending.)
+// Submit button component; uses useFormStatus to disable + change label when pending.
 function Submit(): React.ReactElement {
   const { pending } = useFormStatus();
   return (
@@ -25,22 +24,20 @@ function Submit(): React.ReactElement {
 
 const initialState: CreateCommentState = { error: null };
 
-// VI: Form bình luận; useFormState wrap action để surface lỗi Zod ra React state.
-// (EN: Comment form; useFormState wraps the action to surface Zod errors as React state.)
-// VI: Dùng <textarea> HTML native để form vẫn submit khi tắt JS (progressive enhancement).
-// (EN: Use native <textarea> so the form still submits with JS disabled — progressive enhancement.)
+// Comment form; useFormState wraps the action to surface Zod errors as React state.
+// Use native <textarea> so the form still submits with JS disabled — progressive enhancement.
 export function CommentForm(): React.ReactElement {
   const [state, action] = useFormState(createComment, initialState);
   return (
     <form action={action} className="space-y-3" data-testid="comment-form">
       <label htmlFor="comment-body" className="text-default-700 block text-sm font-medium">
-        Nội dung comment
+        Comment body
       </label>
       <textarea
         id="comment-body"
         name="body"
         data-testid="body-input"
-        placeholder="Viết bình luận..."
+        placeholder="Write a comment..."
         rows={3}
         className="border-default-300 bg-default-50 focus:border-primary focus:ring-primary block w-full rounded-medium border p-3 text-sm shadow-sm outline-none focus:ring-1"
       />

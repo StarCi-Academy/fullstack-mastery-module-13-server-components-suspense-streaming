@@ -2,8 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, Chip } from 
 import { CommentForm } from "./_components/comment-form";
 import { listAllComments } from "./_lib/store";
 
-// VI: Trang /comments là Server Component — đọc store, render form + list.
-// (EN: /comments page is a Server Component — reads store, renders form + list.)
+// /comments page is a Server Component — reads store, renders form + list.
 export const dynamic = "force-dynamic";
 
 export default function CommentsPage(): React.ReactElement {
@@ -14,7 +13,7 @@ export default function CommentsPage(): React.ReactElement {
         <CardHeader>
           <CardTitle className="text-3xl font-bold tracking-tight">Comments</CardTitle>
           <CardDescription>
-            Server Action + Zod + revalidatePath. Form submit native ngay cả khi tắt JS.
+            Server Action + Zod + revalidatePath. Form submit native even with JS disabled.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -31,9 +30,7 @@ export default function CommentsPage(): React.ReactElement {
         </CardHeader>
         <CardContent>
           {comments.length === 0 ? (
-            <p className="text-default-500 py-4 text-sm">
-              Chưa có comment. Hãy gửi comment đầu tiên!
-            </p>
+            <p className="text-default-500 py-4 text-sm">No comments yet.</p>
           ) : (
             <ul data-testid="comment-list" className="space-y-2">
               {comments.map((c) => (

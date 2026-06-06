@@ -7,7 +7,7 @@ interface AddToCartButtonProps {
   productId: string;
 }
 
-// VI: Client Component — xử lý interactive (EN: Client Component — handles interactivity).
+// EN: Client Component — handles interactivity.
 export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.Element {
   const [count, setCount] = useState(0);
   return (
@@ -15,8 +15,7 @@ export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.
       <Button
         data-testid="add-to-cart"
         data-product-id={productId}
-        color="primary"
-        variant="solid"
+        variant="primary"
         size="md"
         type="button"
         className="font-medium"
@@ -27,7 +26,7 @@ export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.
       <Chip
         data-testid="cart-state"
         color={count > 0 ? "success" : "default"}
-        variant="flat"
+        variant="soft"
         size="md"
       >
         {count > 0 ? "added" : "empty"}

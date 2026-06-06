@@ -1,15 +1,12 @@
-// VI: Store in-memory đơn giản giữ danh sách comment giữa các request server.
-// (EN: Simple in-memory store keeping the comment list across server requests.)
+// Simple in-memory store keeping the comment list across server requests.
 export interface Comment {
   id: string;
   body: string;
   createdAt: number;
 }
 
-// VI: Lưu ý: ở dev/production thật phải dùng DB; in-memory này chỉ phục vụ demo lesson.
-// Dùng globalThis để chống HMR reset module giữa các request trong dev mode.
-// (EN: Note: real prod uses a DB; this in-memory is for lesson demo only.
-// We pin the list to globalThis so dev HMR does not wipe it between requests.)
+// Pin the list to globalThis so dev HMR does not wipe it between requests.
+// Note: real production uses a database; this in-memory store is for lesson demo only.
 const g = globalThis as unknown as { __comments?: Comment[] };
 if (!g.__comments) {
   g.__comments = [];

@@ -8,8 +8,7 @@ interface ProductRow {
   price: number;
 }
 
-// VI: Server Component — query DB và render HTML, không "use client"
-// (EN: Server Component — queries the DB and renders HTML, no "use client").
+// EN: Server Component — queries the DB and renders HTML, no "use client".
 export default async function ProductPage({
   params,
 }: {
@@ -49,7 +48,7 @@ export default async function ProductPage({
               {product.name}
             </CardTitle>
           </div>
-          <Chip color="primary" variant="flat" size="sm">
+          <Chip color="accent" variant="soft" size="sm">
             id: {product.id}
           </Chip>
         </CardHeader>
@@ -58,7 +57,7 @@ export default async function ProductPage({
             ${product.price}
           </p>
           <p className="text-default-500 text-sm">
-            HTML phía dưới là Client Component — chỉ <code className="bg-default-100 rounded px-1 py-0.5 text-xs">productId</code> đi qua ranh giới.
+            The element below is a Client Component — only <code className="bg-default-100 rounded px-1 py-0.5 text-xs">productId</code> crosses the boundary.
           </p>
           <AddToCartButton productId={product.id} />
         </CardContent>
