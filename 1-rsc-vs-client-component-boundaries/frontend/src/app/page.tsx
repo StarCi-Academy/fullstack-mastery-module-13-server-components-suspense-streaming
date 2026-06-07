@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  Chip,
   Paragraph,
 } from "@/components/ui";
 import { LessonHeader } from "@/components/lesson-header";
@@ -23,21 +22,11 @@ export default function Home(): React.ReactElement {
       <div className="mx-auto max-w-2xl">
         <LessonHeader title={TITLE} description={DESCRIPTION} />
         <Card>
-          <CardHeader className="flex flex-row items-start justify-between gap-3">
-            <div className="flex flex-col gap-1">
-              <CardTitle>Open the demo route</CardTitle>
-              <CardDescription>
-                The /products/1 route renders a Server Component for data and a Client Component for the cart button.
-              </CardDescription>
-            </div>
-            <div className="flex shrink-0 flex-col items-end gap-1">
-              <Chip color="accent" variant="soft" size="sm">
-                server
-              </Chip>
-              <Chip color="warning" variant="soft" size="sm">
-                client
-              </Chip>
-            </div>
+          <CardHeader>
+            <CardTitle>Open the demo route</CardTitle>
+            <CardDescription>
+              The /products/1 route renders a Server Component for data and a Client Component for the cart button.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             <Paragraph size="sm" color="muted">
