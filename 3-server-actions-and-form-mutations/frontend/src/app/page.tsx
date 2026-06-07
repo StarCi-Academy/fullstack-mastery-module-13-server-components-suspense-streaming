@@ -1,8 +1,8 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { LessonShell } from "@/components/LessonShell";
 import { Button, Code } from "@/components/ui";
 
-/** Home page — entry point linking to the /comments Server Action demo. */
+/** Home page â€” entry point linking to the /comments Server Action demo. */
 export default function HomePage(): React.ReactElement {
   return (
     <main className="min-h-screen bg-background p-3">
@@ -15,10 +15,9 @@ export default function HomePage(): React.ReactElement {
               The native form still submits with JavaScript disabled.
             </>
           }
-          statusLabel="Lab — entry"
           alertTitle="Open /comments to run the Server Action demo"
           alertBody="Post a comment through a Server Action, watch Zod validation surface inline errors, and confirm the list revalidates after a successful submit."
-          alertTip="Tip: try DevTools → Network while posting — the mutation runs on the server, not via a client-side REST call."
+          alertTip="Tip: try DevTools â†’ Network while posting â€” the mutation runs on the server, not via a client-side REST call."
         >
           <p className="text-sm text-muted">
             Open the comments page to post a comment through a Server Action, see inline

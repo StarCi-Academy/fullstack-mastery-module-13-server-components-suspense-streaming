@@ -1,7 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { Alert, Chip } from "@heroui/react"
+import { Alert } from "@heroui/react"
 
 /** Rendering mode label shown in the lesson shell. */
 export type LessonRenderMode = "csr" | "ssr"
@@ -26,7 +26,7 @@ function networkHint(renderMode: LessonRenderMode): string {
 }
 
 /**
- * LessonShell — shared M12-style page frame: title, description, content status, alert, content slot.
+ * LessonShell — shared page frame: title, description, alert, content slot.
  * @param props.title - Lesson title shown above the content.
  * @param props.description - Short lesson description under the title.
  * @param props.renderMode - Which rendering model this app demonstrates.
@@ -38,21 +38,12 @@ export function LessonShell({
     renderMode,
     children,
 }: LessonShellProps) {
-    const modeLabel = renderMode === "csr" ? "CSR — browser" : "SSR — server"
-
     return (
         <main className="min-h-screen bg-background p-3">
             <div className="mx-auto max-w-2xl">
                 <div className="text-base font-semibold text-foreground">{title}</div>
                 <div className="h-3" />
                 <div className="text-sm text-muted">{description}</div>
-                <div className="h-6" />
-                <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-foreground">Content Status</span>
-                    <Chip color="accent" variant="soft" size="sm" className="w-fit bg-accent/20">
-                        {modeLabel}
-                    </Chip>
-                </div>
                 <div className="h-6" />
                 <Alert status="accent" className="shadow-none bg-accent/10">
                     <Alert.Indicator />

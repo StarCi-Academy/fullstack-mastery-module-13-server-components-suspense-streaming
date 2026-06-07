@@ -1,15 +1,13 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Alert, Chip, Heading, Paragraph } from "@/components/ui";
+import { Alert, Heading, Paragraph } from "@/components/ui";
 
 interface LessonShellProps {
   /** Page title shown above the content. */
   title: string;
   /** Short muted description under the title. */
   description: string;
-  /** Content status chip label for this route. */
-  statusLabel: string;
   /** Primary Network-tab instruction shown in the alert title. */
   alertTitle: string;
   /** Main alert body copy (rendered at text-xs). */
@@ -23,10 +21,9 @@ interface LessonShellProps {
 }
 
 /**
- * LessonShell — M12-style frame with title, content status, Network alert, and content slot.
+ * LessonShell — M12-style frame with title, Network alert, and content slot.
  * @param props.title - Page title shown above the content.
  * @param props.description - Short muted description under the title.
- * @param props.statusLabel - Content status chip label for this route.
  * @param props.alertTitle - Primary Network-tab instruction shown in the alert title.
  * @param props.alertBody - Main alert body copy (rendered at text-xs).
  * @param props.alertTip - Optional muted tip below the main alert body (rendered at text-xs).
@@ -36,7 +33,6 @@ interface LessonShellProps {
 export function LessonShell({
   title,
   description,
-  statusLabel,
   alertTitle,
   alertBody,
   alertTip,
@@ -52,13 +48,6 @@ export function LessonShell({
       <Paragraph size="sm" color="muted">
         {description}
       </Paragraph>
-      <div className="h-6" />
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-medium text-foreground">Content Status</span>
-        <Chip color="accent" variant="soft" size="sm" className="w-fit bg-accent/20">
-          {statusLabel}
-        </Chip>
-      </div>
       <div className="h-6" />
       <Alert status="accent" className="shadow-none bg-accent/10">
         <Alert.Indicator />

@@ -1,12 +1,12 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { LessonShell } from "@/components/LessonShell";
 import { Button } from "@/components/ui";
 
 const TITLE = "Partial Prerendering (PPR)";
 const DESCRIPTION =
-  "A static shell prerendered at build time plus a dynamic hole that reads cookies via Suspense — both delivered in a single streamed response.";
+  "A static shell prerendered at build time plus a dynamic hole that reads cookies via Suspense â€” both delivered in a single streamed response.";
 
-/** Home page — entry point linking to the /product PPR demo. */
+/** Home page â€” entry point linking to the /product PPR demo. */
 export default function HomePage(): React.ReactElement {
   return (
     <main className="min-h-screen bg-background p-3">
@@ -14,10 +14,9 @@ export default function HomePage(): React.ReactElement {
         <LessonShell
           title={TITLE}
           description={DESCRIPTION}
-          statusLabel="Lab — entry"
           alertTitle="Open /product to see the PPR shell + dynamic hole"
           alertBody="The /product route opts into PPR via experimental_ppr. Its static shell paints instantly while the cart hole streams in from the cart_count cookie."
-          alertTip="Tip: set cart_count in DevTools → Application → Cookies, then reload to change only the dynamic hole."
+          alertTip="Tip: set cart_count in DevTools â†’ Application â†’ Cookies, then reload to change only the dynamic hole."
         >
           <p className="text-sm text-muted">
             Open the product page to compare the prerendered shell with the per-request cart KPI.

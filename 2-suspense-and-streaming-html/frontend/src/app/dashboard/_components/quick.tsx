@@ -20,7 +20,6 @@ export async function Quick(): Promise<React.ReactElement> {
         </Chip>
       </div>
       <p className="text-sm text-foreground">{data.value}</p>
-      <p className="text-xs text-muted">streamed first chunk</p>
     </div>
   );
 }

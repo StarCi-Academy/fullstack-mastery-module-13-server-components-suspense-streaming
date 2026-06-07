@@ -19,7 +19,6 @@ export async function Medium(): Promise<React.ReactElement> {
         </Chip>
       </div>
       <p className="text-sm text-foreground">{data.value}</p>
-      <p className="text-xs text-muted">streamed second chunk</p>
     </div>
   );
 }

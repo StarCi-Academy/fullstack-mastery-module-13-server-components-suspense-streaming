@@ -1,15 +1,13 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Alert, Chip, Heading, Paragraph } from "@/components/ui";
+import { Alert, Heading, Paragraph } from "@/components/ui";
 
 interface LessonShellProps {
   /** Page title shown above the content. */
   title: string;
   /** Short muted description under the title. */
   description: ReactNode;
-  /** Content status chip label for this route. */
-  statusLabel: string;
   /** Primary instruction shown in the alert title. */
   alertTitle: string;
   /** Main alert body copy (rendered at text-xs). */
@@ -25,12 +23,11 @@ interface LessonShellProps {
 }
 
 /**
- * LessonShell — M12-style frame with title, content status, alert, and content slot.
+ * LessonShell — M12-style frame with title, alert, and content slot.
  */
 export function LessonShell({
   title,
   description,
-  statusLabel,
   alertTitle,
   alertBody,
   alertTip,
@@ -47,13 +44,6 @@ export function LessonShell({
       <Paragraph size="sm" color="muted">
         {description}
       </Paragraph>
-      <div className="h-6" />
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-medium text-foreground">Content Status</span>
-        <Chip color="accent" variant="soft" size="sm" className="w-fit bg-accent/20">
-          {statusLabel}
-        </Chip>
-      </div>
       <div className="h-6" />
       <Alert status="accent" className="shadow-none bg-accent/10">
         {showAlertIndicator ? <Alert.Indicator /> : null}
