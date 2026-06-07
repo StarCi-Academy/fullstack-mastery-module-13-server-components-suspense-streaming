@@ -1,4 +1,4 @@
-﻿import { Suspense } from "react";
+import { Suspense } from "react";
 import { LessonShell } from "@/components/LessonShell";
 import { Skeleton } from "@/components/ui";
 import { Quick } from "./_components/quick";
@@ -6,13 +6,13 @@ import { Medium } from "./_components/medium";
 import { Slow } from "./_components/slow";
 
 /** Shared Network alert copy for the dashboard route. */
-const ALERT_TITLE = "Open DevTools â†’ Network, then reload /dashboard";
+const ALERT_TITLE = "Open DevTools → Network, then reload /dashboard";
 const ALERT_BODY =
-  "Reload with Network open and watch the document response stream HTML chunks. Each widget sits in its own Suspense boundary â€” Quick resolves first, then Medium, then Slow.";
+  "Reload with Network open and watch the document response stream HTML chunks. Each widget sits in its own Suspense boundary — Quick resolves first, then Medium, then Slow.";
 const ALERT_TIP =
   "Tip: skeleton-* placeholders appear before widget-* blocks swap in. No slow boundary blocks the faster ones.";
 
-/** Dashboard â€” three independent Suspense boundaries for progressive streaming. */
+/** Dashboard — three independent Suspense boundaries for progressive streaming. */
 export default function DashboardPage(): React.ReactElement {
   return (
     <main className="min-h-screen bg-background p-3" data-testid="dashboard-main">
@@ -41,7 +41,7 @@ export default function DashboardPage(): React.ReactElement {
   );
 }
 
-/** Skeleton placeholder â€” text block shape while a widget boundary is pending. */
+/** Skeleton placeholder — text block shape while a widget boundary is pending. */
 function WidgetSkeleton({ label }: { label: string }): React.ReactElement {
   return (
     <div data-testid={`skeleton-${label}`} className="flex flex-col gap-2">

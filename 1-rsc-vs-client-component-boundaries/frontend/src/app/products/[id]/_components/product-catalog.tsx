@@ -45,6 +45,9 @@ export async function ProductCatalog({
                 <p className={PRODUCT_PRICE_CLASS}>${product.price}</p>
               )}
             </div>
+            {isActive ? (
+              <span className="text-xs font-medium text-accent">Viewing</span>
+            ) : null}
           </li>
         );
       })}

@@ -51,10 +51,25 @@ export default async function ProductPage({
           alertTip="Tip: inspect client chunks — db.ts / MOCK_PRODUCTS must not ship to the browser."
         >
           <div className="flex flex-col gap-6">
-            <ProductCatalog activeProductId={product.id} />
-            <ul className="flex flex-col">
-              <AddToCartButton productId={product.id} />
-            </ul>
+            <section className="flex flex-col gap-3">
+              <p className="text-xs uppercase tracking-wide text-muted">Server Component</p>
+              <p className="text-sm text-muted">
+                Catalog rows stream from the mock database — no client JavaScript required.
+              </p>
+              <ProductCatalog activeProductId={product.id} />
+            </section>
+
+            <section className="flex flex-col gap-3">
+              <p className="text-sm font-semibold text-foreground">Client Component</p>
+              <p className="text-xs text-muted">
+                Only{" "}
+                <code className="rounded bg-default-100 px-1 py-0.5 text-xs">productId</code> crosses
+                the boundary into the client bundle. Cart status chip sits beside the action button.
+              </p>
+              <ul className="flex flex-col">
+                <AddToCartButton productId={product.id} />
+              </ul>
+            </section>
           </div>
         </LessonShell>
       </div>

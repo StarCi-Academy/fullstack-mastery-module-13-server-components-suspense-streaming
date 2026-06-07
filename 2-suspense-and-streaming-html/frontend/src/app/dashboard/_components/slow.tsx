@@ -19,6 +19,7 @@ export async function Slow(): Promise<React.ReactElement> {
         </Chip>
       </div>
       <p className="text-sm text-foreground">{data.value}</p>
+      <p className="text-xs text-muted">streamed last chunk</p>
     </div>
   );
 }
