@@ -1,5 +1,6 @@
 "use client";
 
+// EN: Client Component — the interactive island that handles cart state.
 import { useState } from "react";
 import { Button, Chip } from "@/components/ui";
 
@@ -7,7 +8,6 @@ interface AddToCartButtonProps {
   productId: string;
 }
 
-// EN: Client Component — handles interactivity.
 export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.Element {
   const [count, setCount] = useState(0);
   return (

@@ -1,5 +1,4 @@
-// Flow 2 — Quick resolves first, Medium next, Slow last.
-// (EN: Flow 2 — kiểm chứng thứ tự reveal Quick → Medium → Slow.)
+// Flow 2 — Quick resolves first, Medium next, Slow last; each streams independently.
 import { test, expect } from "@playwright/test";
 import { observe } from "./observe";
 

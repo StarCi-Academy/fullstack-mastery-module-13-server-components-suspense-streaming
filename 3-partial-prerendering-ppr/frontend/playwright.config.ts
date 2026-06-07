@@ -1,7 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const PORT = 3410;
-const BASE_URL = `http://127.0.0.1:${PORT}`;
+// Use localhost (not 127.0.0.1) so Playwright cookies seeded for http://localhost:3410
+// are attached to navigations — the two are distinct cookie domains.
+const BASE_URL = `http://localhost:${PORT}`;
 
 export default defineConfig({
   testDir: "./scripts",

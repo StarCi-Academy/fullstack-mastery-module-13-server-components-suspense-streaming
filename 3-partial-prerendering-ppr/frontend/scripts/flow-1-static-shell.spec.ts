@@ -1,5 +1,4 @@
 // scripts/flow-1-static-shell.spec.ts
-// VI: Flow 1 — kiểm chứng shell tĩnh phát trước, response 200 và shell hiển thị ngay.
 // EN: Flow 1 — verify the static shell ships first, response 200 and shell visible immediately.
 import { test, expect } from "@playwright/test";
 import { observe } from "./observe";

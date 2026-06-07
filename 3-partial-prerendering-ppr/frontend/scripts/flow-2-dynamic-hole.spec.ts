@@ -1,5 +1,4 @@
 // scripts/flow-2-dynamic-hole.spec.ts
-// VI: Flow 2 — shell paint trước, lỗ động swap fallback `Cart: …` thành `Cart: 7` từ cookie.
 // EN: Flow 2 — shell paints first, the dynamic hole swaps the `Cart: …` fallback for `Cart: 7` from the cookie.
 import { test, expect } from "@playwright/test";
 import { observe } from "./observe";

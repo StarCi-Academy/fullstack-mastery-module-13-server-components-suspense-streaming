@@ -12,4 +12,8 @@ export {
   Chip,
   Skeleton,
   Spinner,
+  Typography,
+  Heading,
+  Paragraph,
+  ErrorMessage,
 } from "@heroui/react";

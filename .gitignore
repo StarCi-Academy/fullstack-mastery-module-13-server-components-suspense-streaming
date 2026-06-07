@@ -17,3 +17,4 @@ go-err.txt
 .env.local
 test-results/
 playwright-report/
+coverage/

@@ -1,5 +1,4 @@
-// Flow 1 — shell + three Suspense skeletons render early.
-// (EN: Flow 1 — shell và ba skeleton Suspense xuất hiện sớm trước data resolve.)
+// Flow 1 — shell + three Suspense skeletons render early before slow data resolves.
 import { test, expect } from "@playwright/test";
 import { observe } from "./observe";
 

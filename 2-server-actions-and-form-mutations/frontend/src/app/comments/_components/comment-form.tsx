@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { Button, Chip } from "@/components/ui";
+import { Button, ErrorMessage } from "@/components/ui";
 import { createComment, type CreateCommentState } from "../actions";
 
 /** Submit control — disabled while the Server Action is pending. */
@@ -11,6 +11,7 @@ function Submit(): React.ReactElement {
     <Button
       type="submit"
       isDisabled={pending}
+      isPending={pending}
       data-testid="submit-btn"
       variant="primary"
       size="md"
@@ -25,14 +26,14 @@ const initialState: CreateCommentState = { error: null };
 
 /**
  * Comment form — useFormState wraps the Server Action to surface Zod errors.
- * Native textarea keeps progressive enhancement (no JS required).
+ * The native textarea keeps progressive enhancement working without JS.
  */
 export function CommentForm(): React.ReactElement {
   const [state, action] = useFormState(createComment, initialState);
 
   return (
-    <form action={action} className="space-y-3" data-testid="comment-form">
-      <label htmlFor="comment-body" className="block text-sm font-medium text-foreground">
+    <form action={action} className="flex flex-col gap-3" data-testid="comment-form">
+      <label htmlFor="comment-body" className="text-sm font-medium text-foreground">
         Comment body
       </label>
       <textarea
@@ -41,20 +42,16 @@ export function CommentForm(): React.ReactElement {
         data-testid="body-input"
         placeholder="Write a comment..."
         rows={3}
-        className="block w-full rounded-xl bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted focus:outline-none"
+        className="block w-full rounded-xl border border-default-200 bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
       />
       {state.error && (
-        <Chip
-          color="danger"
-          variant="secondary"
-          size="sm"
-          className="w-fit"
-          data-testid="error-msg"
-        >
+        <ErrorMessage data-testid="error-msg" className="text-sm">
           {state.error}
-        </Chip>
+        </ErrorMessage>
       )}
-      <Submit />
+      <div className="pt-1">
+        <Submit />
+      </div>
     </form>
   );
 }

@@ -1,5 +1,4 @@
-// Flow 3 — loading.tsx visible during navigation from / to /dashboard.
-// (EN: Flow 3 — loading.tsx mức route hiển thị khi navigate / → /dashboard.)
+// Flow 3 — route-level loading.tsx visible during navigation from / to /dashboard.
 import { test, expect } from "@playwright/test";
 import { observe } from "./observe";
 
