@@ -2,6 +2,10 @@
 
 // EN: Re-export HeroUI v3 primitives through a client module so Server Components can import them.
 export {
+  Alert,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   Button,
   Card,
   CardContent,

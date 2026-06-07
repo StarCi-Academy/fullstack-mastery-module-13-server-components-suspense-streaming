@@ -10,6 +10,10 @@
 // client boundary resolves to `undefined`, because the client reference is a
 // per-export proxy and does not carry attached static members.
 export {
+  Alert,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   Button,
   Card,
   CardContent,

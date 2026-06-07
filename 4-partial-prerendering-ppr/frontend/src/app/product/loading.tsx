@@ -1,28 +1,23 @@
-// src/app/product/loading.tsx
-// EN: Route-level loading UI — HeroUI Skeletons matching the shell layout so there
-// is no layout shift while the route segment mounts.
-import { Card, CardContent, CardHeader, Skeleton } from "@/components/ui";
+import { Skeleton } from "@/components/ui";
 
-export default function ProductLoading() {
+/** Route-level loading UI — skeleton blocks matching the flat PPR layout. */
+export default function ProductLoading(): React.ReactElement {
   return (
     <main className="min-h-screen bg-background p-3">
-      <div className="mx-auto max-w-2xl space-y-6">
-        <Card>
-          <CardHeader className="flex flex-col gap-2">
-            <Skeleton className="h-3 w-24 rounded-medium" />
-            <Skeleton className="h-8 w-48 rounded-medium" />
-            <Skeleton className="h-4 w-64 rounded-medium" />
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-col gap-2">
-            <Skeleton className="h-3 w-28 rounded-medium" />
-            <Skeleton className="h-4 w-32 rounded-medium" />
-          </CardHeader>
-          <CardContent>
-            <Skeleton className="h-10 w-40 rounded-medium" />
-          </CardContent>
-        </Card>
+      <div className="mx-auto max-w-2xl">
+        <Skeleton className="mb-3 h-6 w-48 rounded-lg" />
+        <Skeleton className="mb-6 h-4 w-full max-w-md rounded-lg" />
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-3 w-24 rounded-lg" />
+            <Skeleton className="h-8 w-40 rounded-lg" />
+            <Skeleton className="h-4 w-64 rounded-lg" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-4 w-28 rounded-lg" />
+            <Skeleton className="h-4 w-32 rounded-lg" />
+          </div>
+        </div>
       </div>
     </main>
   );

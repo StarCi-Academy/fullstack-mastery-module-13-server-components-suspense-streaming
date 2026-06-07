@@ -1,6 +1,9 @@
-// next.config.mjs
-// VI: Bật Partial Prerendering ở mức "incremental" — mỗi route phải opt-in qua `experimental_ppr`.
-// EN: Enable Partial Prerendering at "incremental" — each route must opt in via `experimental_ppr`.
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const frontendRoot = path.dirname(fileURLToPath(import.meta.url));
+
+/** Next.js config — incremental PPR opt-in per route via experimental_ppr. */
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   experimental: {
@@ -9,6 +12,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  outputFileTracingRoot: frontendRoot,
 };
 
 export default nextConfig;

@@ -29,4 +29,12 @@ export const db = {
     await new Promise((resolve) => setTimeout(resolve, 30));
     return { rows: product ? [product as unknown as T] : [] };
   },
+
+  /**
+   * EN: Return every mock product row for catalog list rendering on the server.
+   */
+  async listAllProducts(): Promise<Array<Product>> {
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    return Object.values(MOCK_PRODUCTS);
+  },
 };

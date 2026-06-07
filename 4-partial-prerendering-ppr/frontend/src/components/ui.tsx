@@ -3,6 +3,7 @@
 // EN: Re-export HeroUI v3 primitives through a client module so Server Components can import them.
 // PPR demo uses these for the static shell (Card/Typography/Chip) and the dynamic-hole placeholder (Skeleton).
 export {
+  Alert,
   Button,
   Card,
   CardContent,

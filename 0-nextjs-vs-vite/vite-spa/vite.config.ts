@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -25,6 +26,6 @@ function mockApiPlugin(): Plugin {
 // EN: Vite is ONLY a build tool + dev server (esbuild for dev, Rollup for build).
 // EN: It ships no router and no server renderer — the output is a client-side-rendered SPA.
 export default defineConfig({
-  plugins: [react(), mockApiPlugin()],
+  plugins: [react(), tailwindcss(), mockApiPlugin()],
   server: { port: 5173 },
 });

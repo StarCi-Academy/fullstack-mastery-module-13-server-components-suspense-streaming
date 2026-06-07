@@ -1,15 +1,8 @@
 import Link from "next/link";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Chip,
-  Paragraph,
-} from "@/components/ui";
-import { LessonHeader } from "@/components/lesson-header";
+import { LessonShell } from "@/components/LessonShell";
+import { Button, Paragraph } from "@/components/ui";
 import { CommentForm } from "./_components/comment-form";
+import { CommentItem } from "./_components/comment-item";
 import { listAllComments } from "./_lib/store";
 
 /** Comments page — Server Component reads the store; the form is a Client Component. */
@@ -30,68 +23,50 @@ export default function CommentsPage(): React.ReactElement {
   return (
     <main className="min-h-screen bg-background p-3">
       <div className="mx-auto max-w-2xl">
-        <LessonHeader
+        <LessonShell
           title="Comments"
           description="Post via a Server Action with Zod validation. The native form action keeps working when JavaScript is off."
-        />
-
-        <div className="flex flex-col gap-6">
-          {/* New comment — the form below is a Client Component (useFormState / useFormStatus). */}
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between gap-3">
-              <CardTitle>New comment</CardTitle>
-              <Chip color="warning" variant="soft" size="sm">
-                Client Component
-              </Chip>
-            </CardHeader>
-            <CardContent>
+          statusLabel="Server Action — active"
+          alertTitle="Submit empty, then post a valid comment"
+          alertBody="Click Post comment with an empty body to see the Zod error from useFormState. Fill the textarea and submit again — revalidatePath refreshes the server-rendered list."
+          alertTip="Tip: disable JavaScript and submit again — the native form action still posts through the Server Action."
+        >
+          <div className="flex flex-col gap-6">
+            <section className="flex flex-col gap-3">
               <CommentForm />
-            </CardContent>
-          </Card>
+            </section>
 
-          {/* All comments — rendered by this Server Component from the store. */}
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between gap-3">
-              <CardTitle>All comments</CardTitle>
-              <div className="flex items-center gap-2">
-                <Chip color="accent" variant="soft" size="sm">
-                  Server Component
-                </Chip>
-                <Chip color="default" variant="soft" size="sm" data-testid="comment-count">
-                  {comments.length} total
-                </Chip>
-              </div>
-            </CardHeader>
-            <CardContent>
+            <section className="flex flex-col gap-3">
+              <p className="text-sm font-semibold text-foreground">
+                All comments
+                <span className="ml-2 text-xs font-normal text-muted" data-testid="comment-count">
+                  ({comments.length})
+                </span>
+              </p>
               {comments.length === 0 ? (
                 <Paragraph size="sm" color="muted">
                   No comments yet.
                 </Paragraph>
               ) : (
-                <ul data-testid="comment-list" className="flex flex-col gap-2">
+                <ul data-testid="comment-list" className="flex flex-col gap-3">
                   {comments.map((c) => (
-                    <li
+                    <CommentItem
                       key={c.id}
-                      data-testid="comment-item"
-                      className="rounded-xl bg-default-100 p-3"
-                    >
-                      <Paragraph size="sm">{c.body}</Paragraph>
-                      <Paragraph size="xs" color="muted" className="mt-1.5">
-                        {formatCommentTime(c.createdAt)}
-                      </Paragraph>
-                    </li>
+                      comment={c}
+                      timeLabel={formatCommentTime(c.createdAt)}
+                    />
                   ))}
                 </ul>
               )}
-            </CardContent>
-          </Card>
+            </section>
 
-          <Link href="/" className="inline-block">
-            <Button variant="secondary" type="button" size="sm">
-              Back to home
-            </Button>
-          </Link>
-        </div>
+            <Link href="/" className="inline-block">
+              <Button variant="secondary" type="button" size="sm">
+                Back to home
+              </Button>
+            </Link>
+          </div>
+        </LessonShell>
       </div>
     </main>
   );

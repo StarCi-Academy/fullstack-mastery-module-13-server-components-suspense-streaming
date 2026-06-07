@@ -3,6 +3,7 @@
 // Re-export HeroUI v3 primitives through a client module so Server Components
 // can import them without tripping the package's `client-only` guard.
 export {
+  Alert,
   Button,
   Card,
   CardContent,
