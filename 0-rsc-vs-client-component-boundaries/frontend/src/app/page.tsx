@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button, Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui";
 
-// VI: Trang chủ lab — link tới product demo (EN: Landing page — link to product demo).
+// EN: Landing page — links to the product demo.
 export default function Home(): React.ReactElement {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 p-6">

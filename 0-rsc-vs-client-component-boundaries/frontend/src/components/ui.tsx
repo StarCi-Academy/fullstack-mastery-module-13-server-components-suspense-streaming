@@ -1,7 +1,6 @@
 "use client";
 
-// VI: Re-export HeroUI v3 primitives qua module client để Server Component dùng được.
-// (EN: Re-export HeroUI v3 primitives through a client module for Server Component use.)
+// EN: Re-export HeroUI v3 primitives through a client module so Server Components can import them.
 export {
   Button,
   Card,

@@ -1,28 +1,25 @@
 import { test, expect } from "@playwright/test";
 import { observe } from "./observe";
 
-// VI: Flow 1 — pg/db driver chỉ ở server, không leak sang client chunk thực sự.
-// (EN: Flow 1 — pg/db driver is server-only, never leaks to real client chunks).
-//
-// VI: Trong dev mode, RSC streaming payload có chứa path map cho debugger
-// (file `/lib/db.ts` xuất hiện như source-map reference, không phải code thật).
-// Spec này download mọi script chunk thực sự và assert nội dung không chứa
-// implementation của db.ts (MOCK_PRODUCTS literal + tên function `query`).
-// (EN: In dev mode, the RSC stream contains debugger source-map references
+// EN: In dev mode the RSC streaming payload contains debugger source-map references
 // like `/lib/db.ts` — these are NOT real leaked code. This spec downloads the
-// actual client chunks and asserts the db.ts implementation never ships.)
-test("flow 1 — server-only DB module never reaches the client", async ({
-  page,
-  request,
-}) => {
+// actual script chunks and asserts the db.ts implementation never ships to the browser.
+
+/**
+ * Flow 1 — server-only DB module never reaches the client.
+ * Downloads every real client chunk and asserts db.ts implementation is absent.
+ */
+test("flow 1 — server-only DB module never reaches the client", async ({ page, request }) => {
+  // Step 1: navigate to the product page
   await page.goto("/products/1");
   await observe(page);
 
+  // Step 2: collect all script chunk URLs loaded by the page
   const scriptSrcs = await page.locator("script[src]").evaluateAll((nodes) =>
     nodes.map((n) => (n as HTMLScriptElement).src),
   );
 
-  // VI: Tải mọi client chunk thực sự + concat (EN: download every real client chunk + concat).
+  // Step 3: download every chunk and assert db.ts implementation is absent
   const bodies = await Promise.all(
     scriptSrcs
       .filter((s) => s && s.startsWith("http"))
@@ -33,8 +30,7 @@ test("flow 1 — server-only DB module never reaches the client", async ({
   );
   const allClient = bodies.join("\n");
 
-  // VI: Sentinel `server-only` package + literal data của db.ts không có trong chunk client.
-  // (EN: server-only sentinel + db.ts mock data literal must not appear in client chunks).
+  // Mock data literal and server-only sentinel must not appear in client chunks.
   expect(allClient).not.toContain("MOCK_PRODUCTS");
   expect(allClient).not.toContain("Mechanical Keyboard");
   expect(allClient).not.toMatch(/server[-_]only/);

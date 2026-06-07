@@ -5,11 +5,13 @@ import { Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, Chip, Skeleton } from "@/components/ui";
 import { CartCount } from "./_components/cart-count";
 
+// Per-route opt-in: this single line marks the route for Partial Prerendering.
 export const experimental_ppr = true;
 
 export default function ProductPage() {
   return (
     <main className="mx-auto max-w-3xl space-y-6 p-6">
+      {/* Static shell — no request-time data, prerendered at build */}
       <Card>
         <CardHeader className="flex flex-row items-start justify-between gap-3">
           <div className="flex flex-col gap-1">
@@ -23,6 +25,7 @@ export default function ProductPage() {
         </CardHeader>
       </Card>
 
+      {/* Dynamic hole card — CartCount reads cookies(), deferred to request time */}
       <Card className="border-warning-200 border">
         <CardHeader className="flex flex-row items-center justify-between gap-2">
           <div className="flex flex-col gap-1">
@@ -34,6 +37,7 @@ export default function ProductPage() {
           </Chip>
         </CardHeader>
         <CardContent>
+          {/* Dynamic hole — CartCount reads cookies(), cannot be prerendered */}
           <Suspense fallback={<CartFallback />}>
             <CartCount />
           </Suspense>

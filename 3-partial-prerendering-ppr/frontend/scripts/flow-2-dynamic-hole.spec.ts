@@ -12,7 +12,15 @@ test("flow 2 — dynamic hole streams in", async ({ page, context }) => {
   await page.goto("/product");
 
   await expect(page.getByRole("heading", { name: "Acme Widget" })).toBeVisible();
-  await observe(page, "shell visible + fallback or final cart");
+  await observe(page, "shell visible");
+
+  // Best-effort: the prerendered `CartFallback` placeholder (data-testid="cart-fallback")
+  // is baked INTO the shell, so it can paint before the dynamic hole streams in. The race
+  // is intentionally tolerant — on a fast stream the hole may already be resolved, so we
+  // only observe (never hard-assert) the fallback to illustrate placeholder-before-content.
+  if (await page.getByTestId("cart-fallback").isVisible().catch(() => false)) {
+    await observe(page, "fallback visible before stream (Cart: …)");
+  }
 
   await expect(page.getByTestId("cart-count")).toHaveText("Cart: 7");
   await observe(page, "dynamic hole swapped to Cart: 7");
