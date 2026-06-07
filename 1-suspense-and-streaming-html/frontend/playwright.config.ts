@@ -1,6 +1,7 @@
-// Playwright config — Google Chrome channel, headed via npm script.
-// (EN: Cấu hình Playwright dùng Google Chrome thật, port 3390 theo lesson.)
 import { defineConfig, devices } from "@playwright/test";
+
+const PORT = 3390;
+const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
   testDir: "./scripts",
@@ -8,7 +9,7 @@ export default defineConfig({
   workers: 1,
   reporter: "list",
   use: {
-    baseURL: "http://localhost:3390",
+    baseURL: BASE_URL,
     trace: "off",
   },
   projects: [
@@ -17,4 +18,10 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ],
+  webServer: {
+    command: "npm run dev",
+    url: BASE_URL,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
 });

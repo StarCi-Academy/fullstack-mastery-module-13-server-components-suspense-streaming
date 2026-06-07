@@ -26,8 +26,9 @@ export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.
       <Chip
         data-testid="cart-state"
         color={count > 0 ? "success" : "default"}
-        variant="soft"
-        size="md"
+        variant="secondary"
+        size="sm"
+        className="w-fit capitalize"
       >
         {count > 0 ? "added" : "empty"}
       </Chip>

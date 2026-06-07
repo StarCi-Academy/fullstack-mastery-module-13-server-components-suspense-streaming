@@ -1,13 +1,15 @@
 import { defineConfig, devices } from "@playwright/test";
 
-// VI: Config Playwright dùng channel chrome thật (EN: Playwright config using real Chrome channel).
+const PORT = 3380;
+const BASE_URL = `http://127.0.0.1:${PORT}`;
+
 export default defineConfig({
   testDir: "./scripts",
   fullyParallel: false,
   workers: 1,
   reporter: [["list"]],
   use: {
-    baseURL: "http://localhost:3380",
+    baseURL: BASE_URL,
     trace: "off",
   },
   projects: [
@@ -16,4 +18,10 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ],
+  webServer: {
+    command: "npm run dev",
+    url: BASE_URL,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
 });

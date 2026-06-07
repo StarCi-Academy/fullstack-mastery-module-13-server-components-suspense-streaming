@@ -1,7 +1,7 @@
-// playwright.config.ts
-// VI: Cấu hình Playwright chạy headed trên Google Chrome (channel:'chrome'), base URL trỏ port 3410.
-// EN: Playwright config running headed on Google Chrome (channel:'chrome'), base URL on port 3410.
 import { defineConfig, devices } from "@playwright/test";
+
+const PORT = 3410;
+const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
   testDir: "./scripts",
@@ -9,7 +9,7 @@ export default defineConfig({
   workers: 1,
   reporter: "list",
   use: {
-    baseURL: "http://localhost:3410",
+    baseURL: BASE_URL,
     trace: "on-first-retry",
   },
   projects: [
@@ -18,4 +18,10 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ],
+  webServer: {
+    command: "npm run dev",
+    url: BASE_URL,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
 });

@@ -1,26 +1,25 @@
 import Link from "next/link";
-import { Button, Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui";
+import { Button } from "@/components/ui";
 
-// EN: Landing page — links to the product demo.
+/** Landing page — links to the product demo. */
 export default function Home(): React.ReactElement {
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 p-6">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold tracking-tight">RSC Boundary Lab</CardTitle>
-          <CardDescription>
-            Open <code className="bg-default-100 rounded px-1.5 py-0.5 text-sm">/products/1</code> để
-            xem Server Component render dữ liệu và Client Component xử lý interactivity.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Link href="/products/1" className="inline-block" data-testid="link-product">
-            <Button variant="primary" size="lg" type="button" className="font-medium">
-              Mở /products/1
-            </Button>
-          </Link>
-        </CardContent>
-      </Card>
+    <main className="min-h-screen bg-background p-3">
+      <div className="mx-auto max-w-2xl">
+        <div className="text-base font-semibold text-foreground">RSC Boundary Lab</div>
+        <div className="h-3" />
+        <div className="text-sm text-muted">
+          Open{" "}
+          <code className="rounded bg-default-100 px-1.5 py-0.5 text-xs">/products/1</code> to
+          see a Server Component render data and a Client Component handle interactivity.
+        </div>
+        <div className="h-6" />
+        <Link href="/products/1" className="inline-block" data-testid="link-product">
+          <Button variant="primary" type="button">
+            Open /products/1
+          </Button>
+        </Link>
+      </div>
     </main>
   );
 }

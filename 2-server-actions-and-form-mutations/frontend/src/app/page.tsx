@@ -1,26 +1,25 @@
 import Link from "next/link";
-import { Button, Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui";
+import { Button } from "@/components/ui";
 
-// VI: Trang chủ điều hướng sang /comments với UI polished.
-// (EN: Home page redirects to /comments with polished UI.)
+/** Home page — links to /comments. */
 export default function HomePage(): React.ReactElement {
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 p-6">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold tracking-tight">Server Actions Lab</CardTitle>
-          <CardDescription>
-            Thực hành Server Actions của Next.js 15 — submit form, validate Zod, revalidate path.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Link href="/comments" className="inline-block">
-            <Button color="primary" size="lg" variant="solid" type="button" className="font-medium">
-              Mở /comments
-            </Button>
-          </Link>
-        </CardContent>
-      </Card>
+    <main className="min-h-screen bg-background p-3">
+      <div className="mx-auto max-w-2xl">
+        <div className="text-base font-semibold text-foreground">Server Actions Lab</div>
+        <div className="h-3" />
+        <div className="text-sm text-muted">
+          Server Actions with Zod validation and{" "}
+          <code className="rounded bg-default-100 px-1.5 py-0.5 text-xs">revalidatePath</code> —
+          native form submit works with JavaScript disabled.
+        </div>
+        <div className="h-6" />
+        <Link href="/comments" className="inline-block" data-testid="link-comments">
+          <Button variant="primary" type="button">
+            Open /comments
+          </Button>
+        </Link>
+      </div>
     </main>
   );
 }

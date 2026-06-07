@@ -10,7 +10,7 @@ export async function CartCount() {
   const count = store.get("cart_count")?.value ?? "0";
   return (
     <div className="flex items-baseline gap-2">
-      <span data-testid="cart-count" className="text-warning-700 text-3xl font-bold">
+      <span data-testid="cart-count" className="text-3xl font-bold text-foreground">
         Cart: {count}
       </span>
       <span className="text-default-500 text-xs">streamed from server cookie</span>
