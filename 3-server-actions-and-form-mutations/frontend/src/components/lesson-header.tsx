@@ -9,20 +9,18 @@ interface LessonHeaderProps {
 
 /**
  * Shared lesson header — keeps title/description spacing consistent across the
- * lab pages. Title uses Heading (level 4, semibold) followed by a muted
- * Paragraph, separated by the canonical h-3 / h-6 spacers.
+ * lab pages. Title uses Heading (level 4, sized via className) followed by a
+ * muted Paragraph, grouped with gap-3.
  */
-export function LessonHeader({ title, description }: LessonHeaderProps): React.ReactElement {
+export const LessonHeader = ({ title, description }: LessonHeaderProps): React.ReactElement => {
   return (
-    <header>
-      <Heading level={4} weight="semibold">
+    <header className="flex flex-col gap-3">
+      <Heading level={4} className="text-sm font-semibold">
         {title}
       </Heading>
-      <div className="h-3" />
       <Paragraph size="sm" color="muted">
         {description}
       </Paragraph>
-      <div className="h-6" />
     </header>
   );
 }

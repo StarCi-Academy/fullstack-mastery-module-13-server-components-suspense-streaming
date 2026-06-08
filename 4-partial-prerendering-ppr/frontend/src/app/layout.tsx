@@ -10,7 +10,9 @@ export const metadata = {
   description: "Partial Prerendering hands-on lab",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+interface RootLayoutProps { children: ReactNode }
+
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body className="min-h-screen bg-background text-foreground antialiased">
@@ -19,3 +21,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
+export default RootLayout

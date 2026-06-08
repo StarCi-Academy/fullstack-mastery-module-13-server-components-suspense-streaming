@@ -10,12 +10,11 @@ interface ErrorProps {
 }
 
 /** Route-level error boundary for the App Router. */
-export default function ErrorBoundary({ error, reset }: ErrorProps): React.ReactElement {
+const ErrorBoundary = ({ error, reset }: ErrorProps): React.ReactElement => {
   return (
     <main className="min-h-screen bg-background p-3">
       <div className="mx-auto max-w-2xl">
-        <div className="h-6" />
-        <Card>
+        <Card className="border border-default-200 p-3">
           <CardContent className="flex flex-col gap-3">
             <Heading level={4} weight="semibold">
               Something went wrong
@@ -30,3 +29,5 @@ export default function ErrorBoundary({ error, reset }: ErrorProps): React.React
     </main>
   );
 }
+
+export default ErrorBoundary

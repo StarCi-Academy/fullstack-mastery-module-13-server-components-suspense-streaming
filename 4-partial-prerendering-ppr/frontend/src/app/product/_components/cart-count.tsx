@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
 /** Server component reading cart_count from cookies — rendered inside the PPR dynamic hole. */
-export async function CartCount(): Promise<React.ReactElement> {
+export const CartCount = async (): Promise<React.ReactElement> => {
   const store = await cookies();
   const count = store.get("cart_count")?.value ?? "0";
   return (

@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { Button, Card, CardContent, CardHeader, CardTitle, ErrorMessage } from "@/components/ui";
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <main className="min-h-screen bg-background p-3">
       <div className="mx-auto max-w-2xl">
-        <Card>
+        <Card className="border border-default-200 p-3">
           <CardHeader>
             <CardTitle>Page not found</CardTitle>
           </CardHeader>
@@ -24,3 +24,5 @@ export default function NotFound() {
     </main>
   );
 }
+
+export default NotFound

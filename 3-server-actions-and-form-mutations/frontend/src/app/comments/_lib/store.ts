@@ -19,7 +19,7 @@ if (!g.__comments) {
 const comments: Comment[] = g.__comments;
 
 /** Derive a stable avatar seed from a comment id (legacy rows without avatarSeed). */
-function avatarSeedFromId(id: string): number {
+const avatarSeedFromId = (id: string): number => {
   let hash = 0;
   for (let i = 0; i < id.length; i += 1) {
     hash = (hash + id.charCodeAt(i)) % 70;
@@ -27,7 +27,7 @@ function avatarSeedFromId(id: string): number {
   return hash + 1;
 }
 
-export function listAllComments(): Comment[] {
+export const listAllComments = (): Comment[] => {
   return [...comments]
     .map((c) => ({
       ...c,
@@ -36,7 +36,7 @@ export function listAllComments(): Comment[] {
     .sort((a, b) => b.createdAt - a.createdAt);
 }
 
-export function pushComment(body: string): Comment {
+export const pushComment = (body: string): Comment => {
   const c: Comment = {
     id: crypto.randomUUID(),
     body,

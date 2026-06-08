@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { Paragraph } from "@/components/ui";
 import {
   PRODUCT_NAME_CLASS,
   PRODUCT_PRICE_CLASS,
@@ -15,9 +16,9 @@ interface ProductCatalogProps {
  * ProductCatalog — server-rendered product list from the mock database.
  * @param props.activeProductId - Active product id — its row receives Playwright testids for name and price.
  */
-export async function ProductCatalog({
+export const ProductCatalog = async ({
   activeProductId,
-}: ProductCatalogProps): Promise<React.JSX.Element> {
+}: ProductCatalogProps): Promise<React.JSX.Element> => {
   const products = await db.listAllProducts();
 
   return (
@@ -31,18 +32,18 @@ export async function ProductCatalog({
           >
             <div className="flex min-w-0 flex-1 flex-col gap-0.5">
               {isActive ? (
-                <p data-testid="product-name" className={PRODUCT_NAME_CLASS}>
+                <Paragraph data-testid="product-name" size="sm" className={PRODUCT_NAME_CLASS}>
                   {product.name}
-                </p>
+                </Paragraph>
               ) : (
-                <p className={PRODUCT_NAME_CLASS}>{product.name}</p>
+                <Paragraph size="sm" className={PRODUCT_NAME_CLASS}>{product.name}</Paragraph>
               )}
               {isActive ? (
-                <p data-testid="product-price" className={PRODUCT_PRICE_CLASS}>
+                <Paragraph data-testid="product-price" size="sm" color="muted" className={PRODUCT_PRICE_CLASS}>
                   ${product.price}
-                </p>
+                </Paragraph>
               ) : (
-                <p className={PRODUCT_PRICE_CLASS}>${product.price}</p>
+                <Paragraph size="sm" color="muted" className={PRODUCT_PRICE_CLASS}>${product.price}</Paragraph>
               )}
             </div>
             {isActive ? (

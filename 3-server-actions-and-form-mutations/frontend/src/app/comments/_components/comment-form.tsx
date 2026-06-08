@@ -5,7 +5,7 @@ import { Button, ErrorMessage, TextArea } from "@/components/ui";
 import { createComment, type CreateCommentState } from "../actions";
 
 /** Submit control — shows centered dots while the Server Action is pending. */
-function Submit(): React.ReactElement {
+const Submit = (): React.ReactElement => {
   const { pending } = useFormStatus();
   return (
     <Button
@@ -37,22 +37,24 @@ const initialState: CreateCommentState = { error: null };
  * Comment form — useFormState wraps the Server Action to surface Zod errors.
  * The HeroUI TextArea keeps progressive enhancement working without JS.
  */
-export function CommentForm(): React.ReactElement {
+export const CommentForm = (): React.ReactElement => {
   const [state, action] = useFormState(createComment, initialState);
 
   return (
     <form action={action} className="flex flex-col gap-3" data-testid="comment-form">
-      <label htmlFor="comment-body" className="text-sm font-semibold text-foreground">
-        Comment
-      </label>
-      <TextArea
-        id="comment-body"
-        name="body"
-        data-testid="body-input"
-        placeholder="Write a comment..."
-        rows={3}
-        className="w-full"
-      />
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="comment-body" className="text-sm font-semibold text-foreground">
+          Comment
+        </label>
+        <TextArea
+          id="comment-body"
+          name="body"
+          data-testid="body-input"
+          placeholder="Write a comment..."
+          rows={3}
+          className="w-full"
+        />
+      </div>
       {state.error && (
         <ErrorMessage data-testid="error-msg" className="text-sm">
           {state.error}

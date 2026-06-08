@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import { LessonShell } from "@/components/LessonShell";
-import { Heading, Skeleton } from "@/components/ui";
+import { Heading, Paragraph, Skeleton } from "@/components/ui";
 import { CartCount } from "./_components/cart-count";
 
 // Per-route opt-in: this single line marks the route for Partial Prerendering.
 export const experimental_ppr = true;
 
 /** PPR demo page — static shell prerender; Suspense wraps the dynamic CartCount hole. */
-export default function ProductPage(): React.ReactElement {
+const ProductPage = (): React.ReactElement => {
   return (
     <main className="min-h-screen bg-background p-3">
       <div className="mx-auto max-w-2xl">
@@ -20,17 +20,17 @@ export default function ProductPage(): React.ReactElement {
         >
           <div className="flex flex-col gap-6">
             <section className="flex flex-col gap-1">
-              <p className="text-xs uppercase tracking-wide text-muted">Static shell</p>
+              <Paragraph size="sm" color="muted" className="text-xs uppercase tracking-wide">Static shell</Paragraph>
               <Heading level={2} weight="semibold">
                 Acme Widget
               </Heading>
-              <p className="text-sm text-muted">
+              <Paragraph size="sm" color="muted">
                 Static description that is the same for every visitor.
-              </p>
+              </Paragraph>
             </section>
 
             <section className="flex flex-col gap-2">
-              <p className="text-sm font-semibold text-foreground">Items in cart</p>
+              <Paragraph size="sm" className="font-semibold text-foreground">Items in cart</Paragraph>
               <Suspense fallback={<CartFallback />}>
                 <CartCount />
               </Suspense>
@@ -42,8 +42,10 @@ export default function ProductPage(): React.ReactElement {
   );
 }
 
+export default ProductPage
+
 /** KPI placeholder while the dynamic hole streams in. */
-function CartFallback(): React.ReactElement {
+const CartFallback = (): React.ReactElement => {
   return (
     <div className="flex flex-col gap-2">
       <Skeleton className="h-4 w-24 rounded-lg" />

@@ -12,24 +12,21 @@ interface LessonHeaderProps {
 
 /**
  * Shared lesson header — canonical title/description block used by every page
- * shell in this lesson. Fixed spacing tokens (h-3 between title and
- * description, h-6 before the page content) keep all routes visually aligned.
+ * shell in this lesson. Grouped with gap-3 so all routes stay visually aligned.
  */
-export function LessonHeader({
+export const LessonHeader = ({
   title,
   description,
   titleTestId,
-}: LessonHeaderProps): React.ReactElement {
+}: LessonHeaderProps): React.ReactElement => {
   return (
-    <>
-      <Heading level={4} weight="semibold" data-testid={titleTestId}>
+    <div className="flex flex-col gap-3">
+      <Heading level={4} className="text-sm font-semibold" data-testid={titleTestId}>
         {title}
       </Heading>
-      <div className="h-3" />
       <Paragraph size="sm" color="muted">
         {description}
       </Paragraph>
-      <div className="h-6" />
-    </>
+    </div>
   );
 }

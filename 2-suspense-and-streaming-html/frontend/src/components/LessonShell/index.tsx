@@ -30,7 +30,7 @@ interface LessonShellProps {
  * @param props.titleTestId - Optional testid forwarded to the title element.
  * @param props.children - Page body rendered below the alert callout.
  */
-export function LessonShell({
+export const LessonShell = ({
   title,
   description,
   alertTitle,
@@ -38,17 +38,17 @@ export function LessonShell({
   alertTip,
   titleTestId,
   children,
-}: LessonShellProps): React.ReactElement {
+}: LessonShellProps): React.ReactElement => {
   return (
-    <>
-      <Heading level={4} weight="semibold" data-testid={titleTestId}>
-        {title}
-      </Heading>
-      <div className="h-3" />
-      <Paragraph size="sm" color="muted">
-        {description}
-      </Paragraph>
-      <div className="h-6" />
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
+        <Heading level={4} className="text-sm font-semibold" data-testid={titleTestId}>
+          {title}
+        </Heading>
+        <Paragraph size="sm" color="muted">
+          {description}
+        </Paragraph>
+      </div>
       <Alert status="accent" className="shadow-none bg-accent/10">
         <Alert.Indicator />
         <Alert.Content className="gap-2">
@@ -59,8 +59,7 @@ export function LessonShell({
           ) : null}
         </Alert.Content>
       </Alert>
-      <div className="h-6" />
       {children}
-    </>
+    </div>
   );
 }

@@ -1,14 +1,14 @@
 // Medium widget — simulates a mid-latency async source (500ms). An async Server
 // Component whose `await` resolves into the second streamed chunk.
-import { Chip } from "@/components/ui";
+import { Chip, Paragraph } from "@/components/ui";
 
-async function getMediumData(): Promise<{ value: string; delta: string }> {
+const getMediumData = async (): Promise<{ value: string; delta: string }> => {
   await new Promise((res) => setTimeout(res, 500));
   return { value: "Medium data ready", delta: "+500ms" };
 }
 
 /** Medium widget — ~500ms async Server Component. */
-export async function Medium(): Promise<React.ReactElement> {
+export const Medium = async (): Promise<React.ReactElement> => {
   const data = await getMediumData();
   return (
     <div data-testid="widget-medium" className="flex flex-col gap-1">
@@ -18,8 +18,8 @@ export async function Medium(): Promise<React.ReactElement> {
           {data.delta}
         </Chip>
       </div>
-      <p className="text-sm text-foreground">{data.value}</p>
-      <p className="text-xs text-muted">streamed second chunk</p>
+      <Paragraph size="sm" className="text-foreground">{data.value}</Paragraph>
+      <Paragraph size="sm" color="muted" className="text-xs">streamed second chunk</Paragraph>
     </div>
   );
 }

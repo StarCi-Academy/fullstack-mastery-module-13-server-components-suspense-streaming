@@ -9,10 +9,10 @@ import {
 } from "@/components/ui";
 
 /** 404 page — shown for unmatched routes. */
-export default function NotFound(): React.ReactElement {
+const NotFound = (): React.ReactElement => {
   return (
     <main className="flex min-h-screen items-center justify-center p-6">
-      <Card data-testid="not-found" className="border-default-200 border">
+      <Card data-testid="not-found" className="border border-default-200 p-3">
         <CardHeader>
           <CardTitle>Page not found</CardTitle>
         </CardHeader>
@@ -30,3 +30,5 @@ export default function NotFound(): React.ReactElement {
     </main>
   );
 }
+
+export default NotFound

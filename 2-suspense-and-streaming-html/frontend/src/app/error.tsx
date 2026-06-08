@@ -20,13 +20,13 @@ interface ErrorProps {
 }
 
 /** Route error fallback. */
-export default function RouteError({
+const RouteError = ({
   error,
   reset,
-}: ErrorProps): React.ReactElement {
+}: ErrorProps): React.ReactElement => {
   return (
     <main className="flex min-h-screen items-center justify-center p-6">
-      <Card data-testid="route-error" className="border-danger-200 border">
+      <Card data-testid="route-error" className="border border-danger-200 p-3">
         <CardHeader>
           <CardTitle>Something went wrong</CardTitle>
         </CardHeader>
@@ -40,3 +40,5 @@ export default function RouteError({
     </main>
   );
 }
+
+export default RouteError

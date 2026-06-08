@@ -14,7 +14,7 @@ interface AddToCartButtonProps {
  * AddToCartButton — client cart island; status chip sits to the right of the action button.
  * @param props.productId - Product id passed from the Server Component — the only prop that crosses the boundary.
  */
-export function AddToCartButton({ productId }: AddToCartButtonProps): React.JSX.Element {
+export const AddToCartButton = ({ productId }: AddToCartButtonProps): React.JSX.Element => {
   const [count, setCount] = useState(0);
   const cartStatus: CartStatus = count > 0 ? "added" : "empty";
 

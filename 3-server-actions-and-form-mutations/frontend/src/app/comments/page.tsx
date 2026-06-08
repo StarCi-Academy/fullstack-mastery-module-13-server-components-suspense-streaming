@@ -9,7 +9,7 @@ import { listAllComments } from "./_lib/store";
 export const dynamic = "force-dynamic";
 
 /** Format a unix-ms timestamp for the comment list. */
-function formatCommentTime(createdAt: number): string {
+const formatCommentTime = (createdAt: number): string => {
   return new Intl.DateTimeFormat("en", {
     hour: "2-digit",
     minute: "2-digit",
@@ -17,7 +17,7 @@ function formatCommentTime(createdAt: number): string {
   }).format(new Date(createdAt));
 }
 
-export default function CommentsPage(): React.ReactElement {
+const CommentsPage = (): React.ReactElement => {
   const comments = listAllComments();
 
   return (
@@ -36,12 +36,12 @@ export default function CommentsPage(): React.ReactElement {
             </section>
 
             <section className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-foreground">
+              <Paragraph size="sm" className="font-semibold text-foreground">
                 All comments
                 <span className="ml-2 text-xs font-normal text-muted" data-testid="comment-count">
                   ({comments.length})
                 </span>
-              </p>
+              </Paragraph>
               {comments.length === 0 ? (
                 <Paragraph size="sm" color="muted">
                   No comments yet.
@@ -60,7 +60,7 @@ export default function CommentsPage(): React.ReactElement {
             </section>
 
             <Link href="/" className="inline-block">
-              <Button variant="secondary" type="button" size="sm">
+              <Button variant="outline" type="button" size="sm">
                 Back to home
               </Button>
             </Link>
@@ -70,3 +70,5 @@ export default function CommentsPage(): React.ReactElement {
     </main>
   );
 }
+
+export default CommentsPage

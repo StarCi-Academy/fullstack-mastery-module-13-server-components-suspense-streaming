@@ -12,10 +12,7 @@ export interface CreateCommentState {
 }
 
 // Server Action `createComment`: validate, push to store, revalidate path so RSC re-renders.
-export async function createComment(
-  _prev: CreateCommentState,
-  formData: FormData,
-): Promise<CreateCommentState> {
+export const createComment = async (_prev: CreateCommentState, formData: FormData): Promise<CreateCommentState> => {
   const parsed = Schema.safeParse({ body: formData.get("body") });
   if (!parsed.success) {
     return { error: parsed.error.issues[0].message };

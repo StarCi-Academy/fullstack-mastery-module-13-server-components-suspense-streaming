@@ -1,14 +1,14 @@
 // Slow widget — simulates the slowest async source (1500ms). Because it lives in
 // its own Suspense boundary, its long `await` must not hold back Quick or Medium.
-import { Chip } from "@/components/ui";
+import { Chip, Paragraph } from "@/components/ui";
 
-async function getSlowData(): Promise<{ value: string; delta: string }> {
+const getSlowData = async (): Promise<{ value: string; delta: string }> => {
   await new Promise((res) => setTimeout(res, 1500));
   return { value: "Slow data ready", delta: "+1500ms" };
 }
 
 /** Slow widget — ~1500ms async Server Component; must not block faster boundaries. */
-export async function Slow(): Promise<React.ReactElement> {
+export const Slow = async (): Promise<React.ReactElement> => {
   const data = await getSlowData();
   return (
     <div data-testid="widget-slow" className="flex flex-col gap-1">
@@ -18,8 +18,8 @@ export async function Slow(): Promise<React.ReactElement> {
           {data.delta}
         </Chip>
       </div>
-      <p className="text-sm text-foreground">{data.value}</p>
-      <p className="text-xs text-muted">streamed last chunk</p>
+      <Paragraph size="sm" className="text-foreground">{data.value}</Paragraph>
+      <Paragraph size="sm" color="muted" className="text-xs">streamed last chunk</Paragraph>
     </div>
   );
 }

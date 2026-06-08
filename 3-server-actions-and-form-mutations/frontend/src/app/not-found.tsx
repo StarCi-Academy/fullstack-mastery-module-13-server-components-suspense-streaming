@@ -2,12 +2,11 @@ import Link from "next/link";
 import { Button, Card, CardContent, Heading, Paragraph } from "@/components/ui";
 
 /** 404 page — rendered for unmatched routes. */
-export default function NotFound(): React.ReactElement {
+const NotFound = (): React.ReactElement => {
   return (
     <main className="min-h-screen bg-background p-3">
       <div className="mx-auto max-w-2xl">
-        <div className="h-6" />
-        <Card>
+        <Card className="border border-default-200 p-3">
           <CardContent className="flex flex-col gap-3">
             <Heading level={4} weight="semibold">
               Page not found
@@ -26,3 +25,5 @@ export default function NotFound(): React.ReactElement {
     </main>
   );
 }
+
+export default NotFound

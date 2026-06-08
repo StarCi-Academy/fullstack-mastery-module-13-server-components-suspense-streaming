@@ -10,11 +10,13 @@ export const metadata: Metadata = {
   description: "Lab: progressive HTML streaming via React Suspense + Next.js loading.tsx",
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}): React.ReactElement {
+}
+
+const RootLayout = ({
+  children,
+}: RootLayoutProps): React.ReactElement => {
   return (
     <html lang="en">
       <body className="min-h-screen bg-background text-foreground antialiased">
@@ -23,3 +25,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout

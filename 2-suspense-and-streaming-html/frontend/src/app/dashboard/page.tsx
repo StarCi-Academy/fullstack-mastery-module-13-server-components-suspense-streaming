@@ -13,7 +13,7 @@ const ALERT_TIP =
   "Tip: skeleton-* placeholders appear before widget-* blocks swap in. No slow boundary blocks the faster ones.";
 
 /** Dashboard — three independent Suspense boundaries for progressive streaming. */
-export default function DashboardPage(): React.ReactElement {
+const DashboardPage = (): React.ReactElement => {
   return (
     <main className="min-h-screen bg-background p-3" data-testid="dashboard-main">
       <div className="mx-auto max-w-2xl">
@@ -41,8 +41,11 @@ export default function DashboardPage(): React.ReactElement {
   );
 }
 
-/** Skeleton placeholder — text block shape while a widget boundary is pending. */
-function WidgetSkeleton({ label }: { label: string }): React.ReactElement {
+export default DashboardPage
+
+interface WidgetSkeletonProps { label: string }
+
+const WidgetSkeleton = ({ label }: WidgetSkeletonProps): React.ReactElement => {
   return (
     <div data-testid={`skeleton-${label}`} className="flex flex-col gap-2">
       <Skeleton className="h-4 w-20 rounded-lg" />

@@ -1,15 +1,15 @@
 // Quick widget — simulates a fast async source (50ms). Runs entirely on the
 // server (no "use client"), so its `await` suspends the parent Suspense
 // boundary instead of blocking the whole response.
-import { Chip } from "@/components/ui";
+import { Chip, Paragraph } from "@/components/ui";
 
-async function getQuickData(): Promise<{ value: string; delta: string }> {
+const getQuickData = async (): Promise<{ value: string; delta: string }> => {
   await new Promise((res) => setTimeout(res, 50));
   return { value: "Quick data ready", delta: "+50ms" };
 }
 
 /** Quick widget — ~50ms async Server Component, streams first. */
-export async function Quick(): Promise<React.ReactElement> {
+export const Quick = async (): Promise<React.ReactElement> => {
   const data = await getQuickData();
   return (
     <div data-testid="widget-quick" className="flex flex-col gap-1">
@@ -19,8 +19,8 @@ export async function Quick(): Promise<React.ReactElement> {
           {data.delta}
         </Chip>
       </div>
-      <p className="text-sm text-foreground">{data.value}</p>
-      <p className="text-xs text-muted">streamed first chunk</p>
+      <Paragraph size="sm" className="text-foreground">{data.value}</Paragraph>
+      <Paragraph size="sm" color="muted" className="text-xs">streamed first chunk</Paragraph>
     </div>
   );
 }

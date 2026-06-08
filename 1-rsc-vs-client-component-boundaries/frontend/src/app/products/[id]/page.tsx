@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { LessonShell } from "@/components/LessonShell";
+import { Paragraph } from "@/components/ui";
 import { AddToCartButton } from "./_components/add-to-cart";
 import { ProductCatalog } from "./_components/product-catalog";
 
@@ -9,12 +10,13 @@ interface ProductRow {
   price: number;
 }
 
-/** Server Component — queries the DB and renders HTML, no "use client". */
-export default async function ProductPage({
-  params,
-}: {
+interface ProductPageProps {
   params: Promise<{ id: string }>;
-}): Promise<React.JSX.Element> {
+}
+
+const ProductPage = async ({
+  params,
+}: ProductPageProps): Promise<React.JSX.Element> => {
   const { id } = await params;
   const { rows } = await db.query<ProductRow>(
     "SELECT id, name, price FROM products WHERE id = $1",
@@ -32,7 +34,7 @@ export default async function ProductPage({
             alertTitle="Try /products/1 or /products/2"
             alertBody="This route is a Server Component — the not-found state is also rendered on the server."
           >
-            <p className="text-sm text-muted">Use a valid product id from the mock database.</p>
+            <Paragraph size="sm" color="muted">Use a valid product id from the mock database.</Paragraph>
           </LessonShell>
         </div>
       </main>
@@ -52,20 +54,20 @@ export default async function ProductPage({
         >
           <div className="flex flex-col gap-6">
             <section className="flex flex-col gap-3">
-              <p className="text-xs uppercase tracking-wide text-muted">Server Component</p>
-              <p className="text-sm text-muted">
+              <Paragraph size="sm" color="muted" className="text-xs uppercase tracking-wide">Server Component</Paragraph>
+              <Paragraph size="sm" color="muted">
                 Catalog rows stream from the mock database — no client JavaScript required.
-              </p>
+              </Paragraph>
               <ProductCatalog activeProductId={product.id} />
             </section>
 
             <section className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-foreground">Client Component</p>
-              <p className="text-xs text-muted">
+              <Paragraph size="sm" className="font-semibold text-foreground">Client Component</Paragraph>
+              <Paragraph size="sm" color="muted" className="text-xs">
                 Only{" "}
                 <code className="rounded bg-default-100 px-1 py-0.5 text-xs">productId</code> crosses
                 the boundary into the client bundle. Cart status chip sits beside the action button.
-              </p>
+              </Paragraph>
               <ul className="flex flex-col">
                 <AddToCartButton productId={product.id} />
               </ul>
@@ -76,3 +78,5 @@ export default async function ProductPage({
     </main>
   );
 }
+
+export default ProductPage

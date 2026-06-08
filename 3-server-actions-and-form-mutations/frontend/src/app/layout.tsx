@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 
 // Root layout for the App Router; wraps HTML + body and mounts client providers.
-export default function RootLayout({
+const RootLayout = ({
   children,
-}: Readonly<{ children: React.ReactNode }>): React.ReactElement {
+}: Readonly<{ children: React.ReactNode }>): React.ReactElement => {
   return (
     <html lang="en">
       <body className="min-h-screen bg-background text-foreground antialiased">
@@ -20,3 +20,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout

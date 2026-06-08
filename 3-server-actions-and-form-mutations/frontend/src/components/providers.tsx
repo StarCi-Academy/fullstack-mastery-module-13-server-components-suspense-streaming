@@ -10,6 +10,6 @@ import type { PropsWithChildren } from "react";
  * at the root of the App Router tree. Cross-cutting client providers (toast
  * queue, theme, i18n) can be mounted here later without touching layout.tsx.
  */
-export function Providers({ children }: PropsWithChildren): React.ReactElement {
+export const Providers = ({ children }: PropsWithChildren): React.ReactElement => {
   return <>{children}</>;
 }
